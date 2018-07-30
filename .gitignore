@@ -1,3 +1,12 @@
+#XML files
+*.xml
+
+#IML files
+*.iml
+
+#idea folder
+.idea/
+
 # Compiled class file
 *.class
 
