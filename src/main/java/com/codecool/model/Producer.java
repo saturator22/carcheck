@@ -17,4 +17,19 @@ public class Producer {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getProducerName() {
+        return producerName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setProducerName(String producerName) {
+        this.producerName = producerName;
+    }
 }
