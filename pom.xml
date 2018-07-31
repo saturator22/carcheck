@@ -32,7 +32,7 @@
   </dependencyManagement>
 
   <build>
-    <finalName>java-ee-basic-sample</finalName>
+    <finalName>carcheck</finalName>
     <plugins>
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
@@ -61,6 +61,7 @@
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>cdi</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>jpa</artifactId>
@@ -83,6 +84,5 @@
       <artifactId>postgresql</artifactId>
       <version>42.1.4</version>
     </dependency>
-
-
+ </dependencies>
 </project>
