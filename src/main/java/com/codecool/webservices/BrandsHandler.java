@@ -1,4 +1,4 @@
-package com.codecool.webservices;
-
-public class BrandsHandler {
-}
+//package com.codecool.webservices;
+//
+//public class BrandsHandler {
+//}
