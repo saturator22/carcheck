@@ -17,6 +17,6 @@ public class Model{
 
     private int horsePower;
 
-
+    
 }
 
