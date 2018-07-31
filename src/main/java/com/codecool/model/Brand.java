@@ -1,16 +1,21 @@
 package com.codecool.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="brands")
 public class Brand{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int brand_id;
+    private long brand_id;
     private String name;
-    @OneToMany
-    private List<Model> models;
+    @OneToMany(mappedBy = "models")
+    private List<Model> models = new ArrayList<>();
+
+    public Brand(String name){
+        this.name = name;
+    }
 
     public void setName(String name) {
         this.name = name;
