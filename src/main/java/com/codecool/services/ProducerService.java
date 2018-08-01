@@ -26,4 +26,11 @@ public class ProducerService {
         return em.find(Producer.class, id);
     }
 
+    public Producer addProducer(Producer producer) {
+        transaction.begin();
+        em.persist(producer);
+        transaction.commit();
+        return producer;
+    }
+
 }
