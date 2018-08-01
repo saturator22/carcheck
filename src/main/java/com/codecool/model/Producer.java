@@ -1,11 +1,8 @@
 package com.codecool.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +15,7 @@ public class Producer {
 
     private String producerName;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "producer", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producer", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
     private Set<Brand> brandsList;
 
@@ -26,9 +23,7 @@ public class Producer {
         this.producerName = producerName;
     }
 
-    public Producer() {
-
-    }
+    public Producer() {}
 
     public long getId() {
         return id;
