@@ -33,4 +33,12 @@ public class ProducerService {
         return producer;
     }
 
+    public Producer updateProducer(long id, Producer producer) {
+        producer.setId(id);
+        transaction.begin();
+        em.merge(producer);
+        transaction.commit();
+        return producer;
+    }
+
 }
