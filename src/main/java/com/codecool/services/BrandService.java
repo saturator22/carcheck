@@ -13,20 +13,20 @@ public class BrandService {
         this.em = em;
     }
 
-    public Brand createBrand(int id, String brandName) {
+    public Brand createBrand(long id, String brandName) {
         Brand brand = new Brand(brandName);
         em.persist(brand);
         return brand;
     }
 
-    public void removeBrand(int id) {
+    public void removeBrand(long id) {
         Brand brand = findBrand(id);
         if (brand != null) {
             em.remove(brand);
         }
     }
 
-    public Brand findBrand(int id) {
+    public Brand findBrand(long id) {
         return em.find(Brand.class, id);
     }
 
