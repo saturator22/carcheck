@@ -1,6 +1,9 @@
 package com.codecool.model;
 
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Set;
+
 
 @XmlRootElement
 public class Producer {
