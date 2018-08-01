@@ -12,7 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.*;
 
-@Path("producers/1/brands/2/models")
+@Path("producers/1/brands/{id}/models")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ModelsHandler {
@@ -20,34 +20,11 @@ public class ModelsHandler {
     EntityManager em = emf.createEntityManager();
 
     @GET
-    public List<Model> listModels() {
-//        Query query = em.createQuery("SELECT m FROM model m WHERE brand_id=:id");
-//        query.setParameter("id", brandId);
-//
-//        Collection<Model> modelsCollection = query.getResultList();
+    public List<Model> listModels(@PathParam("id") Long brandId) {
+        Query query = em.createQuery("SELECT b.models FROM Brand b WHERE b.id=:id");
+        query.setParameter("id", brandId);
 
-//        Model model1 = new Model("Poldon", "MOCNY W UJ", 1000);
-//        Model model2 = new Model("Malczan", "SLABY W UJ", 24);
-
-        Producer producer = new Producer("VW");
-        Set<Brand> brandList = new HashSet<>();
-
-        em.getTransaction().begin();
-        em.persist(producer);
-        em.getTransaction().commit();
-        Brand brand = new Brand("Audi", em.find(Producer.class, 1L));
-        em.getTransaction().begin();
-        em.persist(brand);
-        em.getTransaction().commit();
-        Model model = new Model("A4", "moc", 654, em.find(Brand.class, 1L));
-        em.getTransaction().begin();
-        em.persist(model);
-        em.getTransaction().commit();
-
-        List<Model> modelsCollection = new ArrayList<>();
-        modelsCollection.add(model);
-        em.close();
-        emf.close();
+        List<Model> modelsCollection = query.getResultList();
 
         return modelsCollection;
     }

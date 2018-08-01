@@ -1,5 +1,8 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
@@ -15,8 +18,9 @@ public class Producer {
 
     private String producerName;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "producer")
-    private Set<Brand> brandsList = new HashSet<>();
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "producer", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Brand> brandsList;
 
     public Producer(String producerName) {
         this.producerName = producerName;

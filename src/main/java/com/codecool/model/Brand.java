@@ -1,5 +1,9 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
@@ -15,11 +19,13 @@ public class Brand{
 
     private String brandName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
     private Producer producer;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
-    private Set<Brand> test = new HashSet<>();
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Model> models;
 
     public Brand(String brandName, Producer producer) {
         this(brandName);
@@ -58,12 +64,12 @@ public class Brand{
         this.producer = producer;
     }
 
-    public Set<Brand> getBrands() {
-        return test;
+    public Set<Model> getModels() {
+        return models;
     }
 
-    public void setBrands(Set<Brand> brands) {
-        this.test = brands;
+    public void setModels(Set<Model> brands) {
+        this.models = brands;
     }
 }
 
