@@ -27,8 +27,7 @@ public class ProducersHandler {
     @PUT
     @Path("/{producerId}")
     public Producer updateProducer(@PathParam("producerId") long id, Producer producer) {
-        producer.setId(id);
-        return producerService.updateProducer(producer);
+        return producerService.updateProducer(id, producer);
     }
 
     @DELETE
@@ -36,7 +35,6 @@ public class ProducersHandler {
     public void deleteProducer(@PathParam("producerId") long id) {
         producerService.removeProducer(id);
     }
-
 
     @GET
     @Path("/{producerId}")
