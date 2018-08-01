@@ -29,10 +29,10 @@ public class Model{
         this.horsePower = horsePower;
     }
 
-//    public Model(String name, String engine, int horsePower, Brand brand) {
-//        this(name, engine, horsePower);
-//        this.brand = brand;
-//    }
+    public Model(String name, String engine, int horsePower, Brand brand) {
+        this(name, engine, horsePower);
+        this.brand = brand;
+    }
 
     public long getId() {
         return id;

@@ -1,19 +1,27 @@
 package com.codecool.services;
 
+import com.codecool.model.Brand;
 import com.codecool.model.Producer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.*;
 
 public class ProducerService {
+
+//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("carcheck");
+//    private EntityManager em = emf.createEntityManager();
 
     private Map<Long, Producer> producers = new HashMap<>();
 
     public ProducerService() {
-        producers.put(1L, new Producer(1, "bmw"));
-        producers.put(2L, new Producer(2, "mazda"));
+        Set<Brand> brandList = new HashSet<>();
+        brandList.add(new Brand("test1"));
+        brandList.add(new Brand("test2"));
+
+        producers.put(1L, new Producer(1, "bmw", brandList));
+        producers.put(2L, new Producer(2, "mazda", brandList));
     }
 
     public List<Producer> getAllProducers() {
