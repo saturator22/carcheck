@@ -16,4 +16,8 @@ public class ProducerService {
         producers.put(2L, new Producer(2, "mazda"));
     }
 
+    public List<Producer> getAllProducers() {
+        return new ArrayList<Producer>(producers.values());
+    }
+
 }
