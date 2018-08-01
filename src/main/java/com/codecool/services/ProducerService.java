@@ -20,4 +20,9 @@ public class ProducerService {
         return new ArrayList<Producer>(producers.values());
     }
 
+    public Producer getProducer(long id) {
+        return producers.get(id);
+    }
+
+
 }
