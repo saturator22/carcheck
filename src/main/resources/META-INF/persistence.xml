@@ -12,8 +12,8 @@
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/carcheckDB"/>
-            <property name="javax.persistence.jdbc.user" value="filip"/>
-            <property name="javax.persistence.jdbc.password" value="filip"/>
+            <property name="javax.persistence.jdbc.user" value="bartoszjakub"/>
+            <property name="javax.persistence.jdbc.password" value="bartoszjakub123"/>
         </properties>
     </persistence-unit>
 

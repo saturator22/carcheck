@@ -1,6 +1,32 @@
 package com.codecool.model;
 
-import javax.servlet.http.HttpServlet;
-
 public class Brand{
+    private long id;
+
+    private String brandName;
+
+    public Brand(long id, String producerName) {
+        this.id = id;
+        this.brandName = producerName;
+    }
+
+    public Brand() {
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
 }
