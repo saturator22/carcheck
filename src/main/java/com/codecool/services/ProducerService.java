@@ -17,4 +17,9 @@ public class ProducerService {
         this.transaction = em.getTransaction();
     }
 
+    public List<Producer> getAllProducers() {
+        Query query = em.createQuery("SELECT p FROM Producer p");
+        return (List<Producer>) query.getResultList();
+    }
+
 }
