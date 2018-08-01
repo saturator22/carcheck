@@ -24,5 +24,10 @@ public class ProducerService {
         return producers.get(id);
     }
 
+    public Producer addProducer(Producer producer) {
+        producer.setId(producers.size() + 1);
+        producers.put(producer.getId(), producer);
+        return producer;
+    }
 
 }
