@@ -22,7 +22,8 @@ public class BrandsHandler {
     }
 
     @GET
-    public Brand getBrandById(long id) {
+    @Path("{id}")
+    public Brand getBrandById(@PathParam("id") long id) {
         Brand brand = bs.findBrand(id);
         return brand;
     }
