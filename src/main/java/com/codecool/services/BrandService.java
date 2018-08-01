@@ -14,7 +14,7 @@ public class BrandService {
     }
 
     public Brand createBrand(int id, String brandName) {
-        Brand brand = new Brand(id, brandName);
+        Brand brand = new Brand(brandName);
         em.persist(brand);
         return brand;
     }

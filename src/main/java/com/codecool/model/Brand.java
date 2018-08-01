@@ -21,8 +21,8 @@ public class Brand{
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Brand> brands = new HashSet<>();
 
-    public Brand(String producerName) {
-        this.brandName = producerName;
+    public Brand(String brandName) {
+        this.brandName = brandName;
     }
 
     public Brand() {
