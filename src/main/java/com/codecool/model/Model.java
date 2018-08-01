@@ -1,17 +1,20 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity(name = "model")
+@Entity
 @XmlRootElement
 public class Model{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Brand brand;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
+    private Brand brand;
 
     private String name;
 
@@ -29,10 +32,10 @@ public class Model{
         this.horsePower = horsePower;
     }
 
-//    public Model(String name, String engine, int horsePower, Brand brand) {
-//        this(name, engine, horsePower);
-//        this.brand = brand;
-//    }
+    public Model(String name, String engine, int horsePower, Brand brand) {
+        this(name, engine, horsePower);
+        this.brand = brand;
+    }
 
     public long getId() {
         return id;
@@ -42,13 +45,13 @@ public class Model{
         this.id = id;
     }
 
-//    public Brand getBrand() {
-//        return brand;
-//    }
-//
-//    public void setBrand(Brand brand) {
-//        this.brand = brand;
-//    }
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 
     public String getName() {
         return name;

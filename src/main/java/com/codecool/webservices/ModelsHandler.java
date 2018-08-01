@@ -1,6 +1,8 @@
 package com.codecool.webservices;
 
+import com.codecool.model.Brand;
 import com.codecool.model.Model;
+import com.codecool.model.Producer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,11 +10,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-@Path("producers/1/brands/2/models")
+@Path("producers/1/brands/{id}/models")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ModelsHandler {
@@ -20,23 +20,12 @@ public class ModelsHandler {
     EntityManager em = emf.createEntityManager();
 
     @GET
-    public List<Model> getAllModels() {
-//        Query query = em.createQuery("SELECT m FROM model m WHERE brand_id=:id");
-//        query.setParameter("id", brandId);
-//
-//        Collection<Model> modelsCollection = query.getResultList();
+    public List<Model> listModels(@PathParam("id") Long brandId) {
+        Query query = em.createQuery("SELECT b.models FROM Brand b WHERE b.id=:id");
+        query.setParameter("id", brandId);
 
-        Model model1 = new Model("Poldon", "MOCNY W UJ", 1000);
-        Model model2 = new Model("Malczan", "SLABY W UJ", 24);
+        List<Model> modelsCollection = query.getResultList();
 
-        em.getTransaction().begin();
-        em.persist(model1);
-        em.persist(model2);
-        em.getTransaction().commit();
-
-        List<Model> modelsCollection = new ArrayList<>();
-        modelsCollection.add(model1);
-        modelsCollection.add(model2);
         return modelsCollection;
     }
 
