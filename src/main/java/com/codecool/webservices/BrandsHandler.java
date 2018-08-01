@@ -8,8 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Collection;
 
-@Path("/brands")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BrandsHandler {
@@ -19,6 +19,13 @@ public class BrandsHandler {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carcheck");
         EntityManager em = emf.createEntityManager();
         this.bs = new BrandService(em);
+    }
+
+    @GET
+    @Path("/brands")
+    public Collection<Brand> getAllBrands() {
+        Collection<Brand> brands = bs.findAllBrands();
+        return brands;
     }
 
     @GET
