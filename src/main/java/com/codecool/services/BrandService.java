@@ -1,7 +1,6 @@
 package com.codecool.services;
 
 import com.codecool.model.Brand;
-import com.codecool.model.Producer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
