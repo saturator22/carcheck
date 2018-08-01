@@ -37,4 +37,9 @@ public class ProducersHandler {
         producerService.removeProducer(id);
     }
 
+    @GET
+    @Path("/{producerId}")
+    public Producer getProducer(@PathParam("producerId") long id) {
+        return producerService.getProducer(id);
+    }
 }
