@@ -2,43 +2,39 @@ package com.codecool.services;
 
 import com.codecool.model.Brand;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.Collection;
 
 public class BrandService {
+    protected EntityManager em;
 
-    private Map<Long, Brand> brands = new HashMap<>();
-
-    public BrandService() {
-        brands.put(1L, new Brand(1, "bmw"));
-        brands.put(2L, new Brand(2, "mazda"));
+    public BrandService(EntityManager em) {
+        this.em = em;
     }
 
-    public List<Brand> getAllPBrands() {
-        return new ArrayList<Brand>(brands.values());
-    }
-
-    public Brand getBrand(long id) {
-        return brands.get(id);
-    }
-
-    public Brand addBrand(Brand brand) {
-        brand.setId(brands.size() + 1);
-        brands.put(brand.getId(), brand);
+    public Brand createBrand(int id, String brandName) {
+        Brand brand = new Brand(id, brandName);
+        em.persist(brand);
         return brand;
     }
 
-    public Brand updateBrand(Brand brand) {
-        if (brand.getId() <= 0) {
-            return null;
+    public void removeBrand(int id) {
+        Brand brand = findBrand(id);
+        if (brand != null) {
+            em.remove(brand);
         }
-        brands.put(brand.getId(), brand);
-        return brand;
     }
 
-    public Brand removeProducer(long id) {
-        return brands.remove(id);
+    public Brand findBrand(int id) {
+        return em.find(Brand.class, id);
     }
+
+    public Collection<Brand> findAllBrands() {
+        Query query = em.createQuery("SELECT e FROM brands e");
+        return (Collection<Brand>) query.getResultList();
+    }
+
+
+
 }
