@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "producer")
+@Entity
 @XmlRootElement
 public class Producer {
 
@@ -18,9 +18,8 @@ public class Producer {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "producer")
     private Set<Brand> brandsList = new HashSet<>();
 
-    public Producer(String producerName, Set<Brand> brandList) {
+    public Producer(String producerName) {
         this.producerName = producerName;
-        this.brandsList = brandList;
     }
 
     public Producer() {

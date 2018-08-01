@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "brand")
+@Entity
 @XmlRootElement
 public class Brand{
 
@@ -18,8 +18,13 @@ public class Brand{
     @ManyToOne(cascade = CascadeType.ALL)
     private Producer producer;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Brand> brands = new HashSet<>();
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    private Set<Brand> test = new HashSet<>();
+
+    public Brand(String brandName, Producer producer) {
+        this(brandName);
+        this.producer = producer;
+    }
 
     public Brand(String brandName) {
         this.brandName = brandName;
@@ -54,11 +59,11 @@ public class Brand{
     }
 
     public Set<Brand> getBrands() {
-        return brands;
+        return test;
     }
 
     public void setBrands(Set<Brand> brands) {
-        this.brands = brands;
+        this.test = brands;
     }
 }
 

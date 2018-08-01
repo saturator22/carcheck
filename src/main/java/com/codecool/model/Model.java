@@ -3,7 +3,7 @@ package com.codecool.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity(name = "model")
+@Entity
 @XmlRootElement
 public class Model{
     @Id

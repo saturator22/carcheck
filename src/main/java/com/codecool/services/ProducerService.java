@@ -16,12 +16,12 @@ public class ProducerService {
     private Map<Long, Producer> producers = new HashMap<>();
 
     public ProducerService() {
-        Set<Brand> brandList = new HashSet<>();
-        brandList.add(new Brand("test1"));
-        brandList.add(new Brand("test2"));
-
-        producers.put(1L, new Producer(1, "bmw", brandList));
-        producers.put(2L, new Producer(2, "mazda", brandList));
+//        Set<Brand> brandList = new HashSet<>();
+//        brandList.add(new Brand("test1"));
+//        brandList.add(new Brand("test2"));
+//
+//        producers.put(1L, new Producer(1, "bmw", brandList));
+//        producers.put(2L, new Producer(2, "mazda", brandList));
     }
 
     public List<Producer> getAllProducers() {
