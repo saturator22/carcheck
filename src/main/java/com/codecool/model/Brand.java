@@ -1,22 +1,27 @@
 package com.codecool.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "brand")
 @XmlRootElement
 public class Brand{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String brandName;
 
-    public Brand(long id, String producerName) {
-        this.id = id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Producer producer;
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Brand> brands = new HashSet<>();
+
+    public Brand(String producerName) {
         this.brandName = producerName;
     }
 
@@ -38,6 +43,22 @@ public class Brand{
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
+
+    public Set<Brand> getBrands() {
+        return brands;
+    }
+
+    public void setBrands(Set<Brand> brands) {
+        this.brands = brands;
     }
 }
 
