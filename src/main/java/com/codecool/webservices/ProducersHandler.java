@@ -19,4 +19,9 @@ public class ProducersHandler {
         return producerService.getAllProducers();
     }
 
+    @POST
+    public Producer addProducer(Producer producer) {
+        return producerService.addProducer(producer);
+    }
+
 }
