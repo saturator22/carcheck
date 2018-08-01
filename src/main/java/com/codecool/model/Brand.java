@@ -30,3 +30,4 @@ public class Brand{
         this.brandName = brandName;
     }
 }
+

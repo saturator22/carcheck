@@ -10,8 +10,6 @@
   <packaging>war</packaging>
 
   <name>carcheck Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <version.wildfly.swarm>2017.11.0</version.wildfly.swarm>
@@ -34,7 +32,7 @@
   </dependencyManagement>
 
   <build>
-    <finalName>java-ee-basic-sample</finalName>
+    <finalName>carcheck</finalName>
     <plugins>
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
@@ -86,5 +84,5 @@
       <artifactId>postgresql</artifactId>
       <version>42.1.4</version>
     </dependency>
-  </dependencies>
+ </dependencies>
 </project>

@@ -1,0 +1,13 @@
+swarm:
+  datasources:
+    data-sources:
+      samplePU:
+        driver-name: postgres-driver
+        connection-url: jdbc:postgresql://localhost:5432/carcheckdb
+        user-name: carcheck
+        password: karczek
+    jdbc-drivers:
+      postgres-driver:
+        driver-module-name: org.postgresql
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-name: org.postgresql.xa.PGXADataSource
