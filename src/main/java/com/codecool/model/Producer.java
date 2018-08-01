@@ -1,7 +1,8 @@
 package com.codecool.model;
 
-import javax.servlet.http.HttpServlet;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Producer {
 
     private long id;
