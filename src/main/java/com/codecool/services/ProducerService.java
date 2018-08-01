@@ -30,4 +30,12 @@ public class ProducerService {
         return producer;
     }
 
+    public Producer updateProducer(Producer producer) {
+        if (producer.getId() <= 0) {
+            return null;
+        }
+        producers.put(producer.getId(), producer);
+        return producer;
+    }
+
 }
