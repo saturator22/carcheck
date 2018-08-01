@@ -38,4 +38,7 @@ public class ProducerService {
         return producer;
     }
 
+    public Producer removeProducer(long id) {
+        return producers.remove(id);
+    }
 }
