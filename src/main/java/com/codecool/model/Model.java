@@ -10,8 +10,8 @@ public class Model{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Brand brand;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Brand brand;
 
     private String name;
 
@@ -42,13 +42,13 @@ public class Model{
         this.id = id;
     }
 
-//    public Brand getBrand() {
-//        return brand;
-//    }
-//
-//    public void setBrand(Brand brand) {
-//        this.brand = brand;
-//    }
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 
     public String getName() {
         return name;
