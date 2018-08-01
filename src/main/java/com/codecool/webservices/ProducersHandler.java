@@ -31,4 +31,10 @@ public class ProducersHandler {
         return producerService.updateProducer(producer);
     }
 
+    @DELETE
+    @Path("/{producerId}")
+    public void deleteProducer(@PathParam("producerId") long id) {
+        producerService.removeProducer(id);
+    }
+
 }
