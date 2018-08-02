@@ -19,11 +19,11 @@ public class Brand{
 
     private String brandName;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JsonBackReference
     private Producer producer;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Model> models;
 
@@ -38,6 +38,12 @@ public class Brand{
 
     public Brand() {
 
+    }
+//    public void updateModel(Model model, Long modelId) {
+//        models.
+//    }
+    public void removeModel(Model model) {
+        models.remove(model);
     }
 
     public long getId() {
