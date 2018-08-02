@@ -12,32 +12,31 @@ import java.util.Collection;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Path("producers/{id}/")
 public class BrandsHandler {
     BrandService bs;
 
     public BrandsHandler() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("carcheck");
-        EntityManager em = emf.createEntityManager();
-        this.bs = new BrandService(em);
+        this.bs = new BrandService();
     }
 
     @GET
     @Path("/brands")
-    public Collection<Brand> getAllBrands() {
-        Collection<Brand> brands = bs.findAllBrands();
+    public Collection<Brand> getAllBrands(@PathParam("id") Long producerId) {
+        Collection<Brand> brands = bs.getAllBrands(producerId);
         return brands;
     }
 
     @GET
-    @Path("{id}")
-    public Brand getBrandById(@PathParam("id") long id) {
+    @Path("/brands/{brandId}")
+    public Brand getBrandById(@PathParam("brandId") long id) {
         Brand brand = bs.findBrand(id);
         return brand;
     }
 
     @DELETE
-    @Path("{id}")
-    public void deleteBrand(@PathParam("id") long id) {
+    @Path("/brands/{brandId}")
+    public void deleteBrand(@PathParam("brandId") long id) {
         bs.removeBrand(id);
     }
 
