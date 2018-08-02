@@ -1,20 +1,16 @@
 package com.codecool.webservices;
 
-import com.codecool.model.Brand;
 import com.codecool.model.Model;
-import com.codecool.model.Producer;
 import com.codecool.services.ModelService;
 
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.*;
 
-@Path("producers/1/brands/{id}/models")
+@Path("producers/{producerId}/brands/{brandId}/models")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ModelsHandler {
@@ -22,34 +18,38 @@ public class ModelsHandler {
     ModelService modelService = new ModelService(getEntityManager());
 
     @GET
-    public List<Model> listModels(@PathParam("id") Long brandId) {
-        em = getEntityManager();
+    public List<Model> listModels(@PathParam("brandId") Long brandId) {
         List<Model> modelsById = modelService.getAllModels(brandId);
-        closeManagers();
         return modelsById;
     }
 
     @GET
     @Path("{id}")
-    public Model getModelById(@PathParam("id") Long modelId) {
-        em = getEntityManager();
-        Model model = modelService.getModelById(modelId);
-        closeManagers();
+    public Model getModelById(@PathParam("brandId") Long brandId, @PathParam("id") Long modelId) {
+        Model model = modelService.getModelById(modelId, brandId);
         return model;
     }
-    //TODO
+
     @POST
-    public void addModel(@PathParam("id") Long id, Model model) {
-        em = getEntityManager();
-        modelService.saveModel(id, model);
+    public Model addModel(@PathParam("brandId") Long id, Model model) {
+        return modelService.saveModel(id, model);
+    }
+
+    @PUT
+    @Path("{id}")
+    public Model editModel(@PathParam("id") Long modelId, Model model) {
+        return modelService.updateModel(modelId, model);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Model deleteModel(@PathParam("brandId") Long brandId, @PathParam("id") Long modelId) {
+        System.out.println("DELETE");
+        return modelService.deleteModel(modelId, brandId);
     }
 
     protected EntityManager getEntityManager() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carcheck");
         return emf.createEntityManager();
-    }
-
-    private void closeManagers() {
-        em.close();
     }
 }
