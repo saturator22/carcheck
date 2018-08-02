@@ -12,7 +12,7 @@ public class Model{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne//(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonBackReference
     private Brand brand;
 
