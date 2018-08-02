@@ -15,7 +15,7 @@ public class Producer {
 
     private String producerName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producer", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "producer", fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<Brand> brandsList;
 
