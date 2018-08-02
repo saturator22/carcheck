@@ -41,12 +41,14 @@ public class ProducerService {
         return producer;
     }
 
-    public void removeProducer(long id) {
+    public boolean removeProducer(long id) {
         Producer producer = getProducer(id);
         if (producer != null) {
             transaction.begin();
             em.remove(producer);
             transaction.commit();
+            return true;
         }
+        else return false;
     }
 }
