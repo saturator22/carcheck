@@ -40,4 +40,16 @@ public class BrandsHandler {
         bs.removeBrand(id);
     }
 
+    @POST
+    @Path("/brands")
+    public Brand addBrand(@PathParam("id") long id, Brand brand) {
+        return bs.addBrand(id, brand);
+    }
+
+    @PUT
+    @Path("brands/{brandId}")
+    public Brand updateBrand(@PathParam("brandId") long brandId, Brand brand) {
+        return bs.updateBrand(brandId, brand);
+    }
+
 }
