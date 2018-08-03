@@ -46,17 +46,15 @@ public class ModelService {
     }
 
     public Optional<Model> findOrNull(Brand brand, Model model) {
-        Model nullModel = new Model("There is no model like this", null, 0);
-        Optional<Model> optionalModel = Optional.of(nullModel);
-        if(model == null) {
+        //TODO OPTIONAL getBrand i getId do Optionala
+        Optional<Model> optionalModel = Optional.ofNullable(model);
+        System.out.println("PRZED IFEM " + optionalModel.map(m -> m.getBrand().getBrandName()));
+
+        if(optionalModel.flatMap(m -> m.getBrand().getId()).orElse(0L) == brand.getId()) {
             return optionalModel;
         }
 
-        if(model.getBrand().getId() == brand.getId()) {
-            Optional<Model> availableModel = Optional.of(model);
-            return availableModel;
-        }
-
+        System.out.println("PO IFIE "+optionalModel);
         return optionalModel;
     }
 

@@ -34,7 +34,6 @@ public class ModelsHandler {
         mapper.registerModule(new Jdk8Module());
 
         Optional<Model> model = modelService.getModelById(modelId, brandId);
-        System.out.println(model.toString());
         String serializedModel = mapper.writeValueAsString(model);
 
 
@@ -55,7 +54,6 @@ public class ModelsHandler {
     @DELETE
     @Path("{id}")
     public Model deleteModel(@PathParam("brandId") Long brandId, @PathParam("id") Long modelId) {
-        System.out.println("DELETE");
         return modelService.deleteModel(modelId, brandId);
     }
 

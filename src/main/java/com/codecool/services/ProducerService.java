@@ -22,7 +22,7 @@ public class ProducerService {
         return (List<Producer>) query.getResultList();
     }
 
-    public Producer getProducer(long id) {
+    public Producer getProducer(Long id) {
         return em.find(Producer.class, id);
     }
 

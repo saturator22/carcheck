@@ -11,7 +11,7 @@ public class Producer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String producerName;
 
@@ -25,7 +25,7 @@ public class Producer {
 
     public Producer() {}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -33,7 +33,7 @@ public class Producer {
         return producerName;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

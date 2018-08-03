@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("producers/{id}/")
+@Path("producers/{id}/brands")
 public class BrandsHandler {
     BrandService bs;
 

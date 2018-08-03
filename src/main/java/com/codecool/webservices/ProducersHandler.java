@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Path("/producers")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -66,9 +67,9 @@ public class ProducersHandler {
     }
 
     @GET
+    @Path("/{pId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{producerId}")
-    public Producer getProducer(@PathParam("producerId") long id) {
+    public Producer getProducer(@PathParam("pId") Long id) {
         return producerService.getProducer(id);
     }
 }

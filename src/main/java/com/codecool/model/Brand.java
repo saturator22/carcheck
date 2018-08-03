@@ -26,7 +26,7 @@ public class Brand{
     @JsonBackReference
     private Producer producer;
 
-    @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<Model> models;
 
