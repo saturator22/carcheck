@@ -2,6 +2,9 @@ package com.codecool.webservices;
 
 import com.codecool.model.Model;
 import com.codecool.services.ModelService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,9 +28,17 @@ public class ModelsHandler {
 
     @GET
     @Path("{id}")
-    public Model getModelById(@PathParam("brandId") Long brandId, @PathParam("id") Long modelId) {
-        Model model = modelService.getModelById(modelId, brandId);
-        return model;
+    public String getModelById(@PathParam("brandId") Long brandId,
+                               @PathParam("id") Long modelId) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Jdk8Module());
+
+        Optional<Model> model = modelService.getModelById(modelId, brandId);
+        System.out.println(model.toString());
+        String serializedModel = mapper.writeValueAsString(model);
+
+
+        return serializedModel;
     }
 
     @POST

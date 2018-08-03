@@ -6,6 +6,8 @@ import com.codecool.model.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class ModelService {
         EntityManager em;
@@ -35,14 +37,27 @@ public class ModelService {
         return models;
     }
 
-    public Model getModelById(Long id, Long brandId) {
+    public Optional<Model> getModelById(Long id, Long brandId) {
+
         Brand brand = em.find(Brand.class, brandId);
         Model model = em.find(Model.class, id);
 
-        if(model.getBrand().getId() == brand.getId()) {
-            return model;
+        return findOrNull(brand, model);
+    }
+
+    public Optional<Model> findOrNull(Brand brand, Model model) {
+        Model nullModel = new Model("There is no model like this", null, 0);
+        Optional<Model> optionalModel = Optional.of(nullModel);
+        if(model == null) {
+            return optionalModel;
         }
-        return null;
+
+        if(model.getBrand().getId() == brand.getId()) {
+            Optional<Model> availableModel = Optional.of(model);
+            return availableModel;
+        }
+
+        return optionalModel;
     }
 
     public Model saveModel(Long id, Model model) {

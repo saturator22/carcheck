@@ -7,7 +7,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+
+import static java.util.Optional.ofNullable;
 
 @Entity
 @XmlRootElement
@@ -42,11 +45,11 @@ public class Brand{
 //    public void updateModel(Model model, Long modelId) {
 //        models.
 //    }
-    public void removeModel(Model model) {
-        models.remove(model);
-    }
+//    public void removeModel(Model model) {
+//        models.remove(model);
+//    }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
